@@ -1,6 +1,7 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * freyr
+ *
+ * https://github.com/hufeng/freyr-ios
  */
 'use strict';
 
