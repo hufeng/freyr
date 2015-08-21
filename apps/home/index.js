@@ -13,6 +13,7 @@ var {
 
 var GoodsList = require('../goods/list');
 var NotifyList = require('../price/list');
+var Setting = require('../setting');
 
 
 var Home = React.createClass({
@@ -60,7 +61,7 @@ var Home = React.createClass({
         <TabBarIOS.Item
           title='订单'
           icon={require('image!cart-grey')}
-          selectedIcon={require('image!cart-empty')}
+          selectedIcon={require('image!cart-blue')}
           selected={this.state.selectedTab === 'order'}
           onPress={this._handlePress.bind(this, 'order')}
         >
@@ -75,7 +76,10 @@ var Home = React.createClass({
           selected={this.state.selectedTab === 'setting'}
           onPress={this._handlePress.bind(this, 'setting')}
         >
-        <Text>setting</Text>
+        {this._renderContent({
+          title: '个人设置',
+          component: Setting
+        })}
         </TabBarIOS.Item>
       </TabBarIOS>
     );

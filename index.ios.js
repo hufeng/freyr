@@ -52,12 +52,17 @@ var freyr = React.createClass({
     });
 
     //token失效
-    msg.on('tokenInvalid', this._handleTokenInvalid);
+    msg
+    .on('tokenInvalid', this._handleTokenInvalid)
+    .on('logout', this._handleTokenInvalid);
+
   },
 
 
   componentWillUnmount() {
-    msg.removeListener('tokenInvalid', this._handleTokenInvalid);
+    msg
+      .removeListener('logout', this._handleTokenInvalid)
+      .removeListener('tokenInvalid', this._handleTokenInvalid);
   },
 
 
