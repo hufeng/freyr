@@ -1,5 +1,4 @@
 var {fetch} = require('ikit');
-console.log(fetch);
 
 /**
  * 获取数据

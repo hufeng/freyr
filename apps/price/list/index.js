@@ -1,5 +1,5 @@
 /**
- * 商品列表
+ * 调价列表
  */
 var React = require('react-native');
 var api = require('./webapi');
@@ -18,7 +18,7 @@ var {
 } = React;
 
 
-var GoodsList = React.createClass({
+var NotifyList = React.createClass({
   getInitialState() {
     //当前页
     this._page = 1;
@@ -114,13 +114,18 @@ var GoodsList = React.createClass({
     return (
       <View key={index}>
         <View style={styles.row}>
-          <Image
-            style={{height: 80, width: 80}}
-            source={{uri: row['pic_url']}}
-          />
-        <View style={styles.wrapper}>
-            <Text style={styles.name}>{row['wuzhen_product_name']}</Text>
-            <Text style={styles.price}>{'￥' + (row['sale_price'] || 0).toFixed(2)}</Text>
+          <View style={{flexDirection: 'row'}}>
+            {this._renderArrow(row['type'])}
+            {this._renderSync(row['is_sync'])}
+            <Text style={styles.name}>{row['gonghuo_product_name']}</Text>
+          </View>
+          <Text style={{color: '#CCCCCC'}}>{row['supplier']}</Text>
+          <View style={{flexDirection: 'row', marginTop: 5,  height: 30}}>
+            <Text style={styles.price}>{'新￥' + row['new_price']}</Text>
+            <Text style={styles.oldPrice}>
+              {'原￥' + row['old_price'].toFixed(2)}
+            </Text>
+            <Text style={styles.draftPrice}>{'拟订价 ￥' + row['draft_price']}</Text>
           </View>
         </View>
         <View style={{height: 1 / PixelRatio.get(), backgroundColor: '#dcdee1'}}/>
@@ -170,6 +175,25 @@ var GoodsList = React.createClass({
      );
    }
 
+   return null;
+ },
+
+
+ _renderArrow(type) {
+   if (type === 1) {
+     return <Image source={require('image!up')} style={{width: 30, height: 20}}/>
+   } else {
+     return <Image source={require('image!down')} style={{width: 20, height: 20}}/>
+   }
+ },
+
+
+ _renderSync(sync) {
+   if (sync) {
+     return (
+      <Image source={require('image!sync')} style={{width: 20, height:20}}/>
+     );
+   }
    return null;
  },
 
@@ -261,17 +285,17 @@ var styles = StyleSheet.create({
     flex: 1
   },
   row: {
-    flexDirection: 'row',
     padding: 10,
     justifyContent: 'center',
-    alignItems: 'center',
+    //alignItems: 'center',
   },
   wrapper: {
     flex:1,
   },
   name: {
     textAlign: 'left',
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: '400',
     lineHeight: 18,
     color: '#344251'
   },
@@ -282,7 +306,24 @@ var styles = StyleSheet.create({
     lineHeight: 20,
     color: '#ff8a00'
   },
+  oldPrice: {
+    textAlign: 'left',
+    textDecorationLine:'line-through',
+    marginTop: 10,
+    marginLeft: 10,
+    fontSize: 14,
+    lineHeight: 20,
+    color: '#CCCCCC'
+  },
+  draftPrice: {
+    textAlign: 'left',
+    marginTop: 10,
+    fontSize: 14,
+    marginLeft: 10,
+    lineHeight: 20,
+    color: '#FFCC33'
+  },
 });
 
 
-module.exports = GoodsList;
+module.exports = NotifyList;

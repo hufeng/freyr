@@ -1,4 +1,5 @@
 module.exports = {
   fetch: require('./fetch'),
-  msg: require('./msg')
+  msg: require('./msg'),
+  time: require('./time')
 };

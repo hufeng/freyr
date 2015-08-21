@@ -38,7 +38,7 @@ var Login = React.createClass({
       <View style={styles.container}>
         <Image
           style={styles.img}
-          source={{uri: 'http://cdn.duitang.com/uploads/item/201405/09/20140509235120_BfPLX.png'}}
+          source={require('image!logo')}
         />
         <TextInput
           placeholder='用户名'

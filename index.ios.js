@@ -52,7 +52,6 @@ var freyr = React.createClass({
     });
 
     //token失效
-    console.log('token-----');
     msg.on('tokenInvalid', this._handleTokenInvalid);
   },
 
