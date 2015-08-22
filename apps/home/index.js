@@ -20,7 +20,7 @@ var OrderList = require('../order/list');
 var Home = React.createClass({
   getInitialState() {
     return {
-      selectedTab: 'order'
+      selectedTab: 'goods'
     }
   },
 
