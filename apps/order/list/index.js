@@ -34,7 +34,7 @@ var OrderList = React.createClass({
     return {
       //count: 0,
       //是不是已经到最后一页
-      isLast: false,
+      isLast: true,
       //数据是不是加载成功
       isLoad: false,
       //是不是需要刷新
@@ -97,8 +97,8 @@ var OrderList = React.createClass({
         <ListView
           ref='listView'
           initialListSize={10}
-          onEndReached={this._onPage}
-          onEndReachedThreshold={100}
+//          onEndReached={this._onPage}
+//          onEndReachedThreshold={100}
           onScroll={this._handleScroll}
           style={styles.list}
           dataSource={this.state.dataSource}
@@ -197,22 +197,22 @@ var OrderList = React.createClass({
    * 分页
    */
   _onPage() {
-    api
-      .fetchGoodsList(++this._page)
-      .done((res) => {
-        //最后一页
-        if (res.results.length === 0) {
-          --this._page;
-        }
-
-        this.setState({
-          //count: res.count,
-          isLoad: true,
-          lastRefreshTime: time(new Date()),
-          isLast: res.results.length == 0,
-          dataSource: this.state.dataSource.cloneWithRows(this._ds.concat(res.results))
-        })
-      })
+    // api
+    //   .fetchGoodsList(++this._page)
+    //   .done((res) => {
+    //     //最后一页
+    //     if (res.results.length === 0) {
+    //       --this._page;
+    //     }
+    //
+    //     this.setState({
+    //       //count: res.count,
+    //       isLoad: true,
+    //       lastRefreshTime: time(new Date()),
+    //       isLast: res.results.length == 0,
+    //       dataSource: this.state.dataSource.cloneWithRows(this._ds.concat(res.results))
+    //     })
+    //   })
   }
 });
 

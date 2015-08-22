@@ -61,7 +61,6 @@ var Home = React.createClass({
         {/*订单*/}
         <TabBarIOS.Item
           title='订单'
-          badge={9}
           icon={require('image!cart-grey')}
           selectedIcon={require('image!cart-blue')}
           selected={this.state.selectedTab === 'order'}
