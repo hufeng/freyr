@@ -24,10 +24,17 @@ module.exports = (url, req) => {
 
   return new Promise((resolve, reject) => {
     fetch(url, merge)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          return res.json();
+        } else {
+          return {
+            results: []
+          };
+        }
+      })
       .then((res) => {
         if (res.detail) {
-          console.log('send-----');
           //token失效
           msg.emit('tokenInvalid');
         } else {
