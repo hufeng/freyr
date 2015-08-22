@@ -14,12 +14,13 @@ var {
 var GoodsList = require('../goods/list');
 var NotifyList = require('../price/list');
 var Setting = require('../setting');
+var OrderList = require('../order/list');
 
 
 var Home = React.createClass({
   getInitialState() {
     return {
-      selectedTab: 'goods'
+      selectedTab: 'order'
     }
   },
 
@@ -65,7 +66,10 @@ var Home = React.createClass({
           selected={this.state.selectedTab === 'order'}
           onPress={this._handlePress.bind(this, 'order')}
         >
-        <Text>order</Text>
+        {this._renderContent({
+          title: '订单',
+          component: OrderList
+        })}
         </TabBarIOS.Item>
 
         {/*设置*/}
