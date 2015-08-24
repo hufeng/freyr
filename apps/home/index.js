@@ -28,6 +28,7 @@ var Home = React.createClass({
     return (
       <TabBarIOS
         tintColor='#507297'
+        titleTextColor='#FFF'
         barTintColor='#fff'
       >
         {/*商品*/}
