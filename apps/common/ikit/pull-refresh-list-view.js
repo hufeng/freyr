@@ -159,9 +159,7 @@ var PullRefreshListView = React.createClass({
 
     if (!this.state.isRefresh &&  offsetY < -60) {
       this._page = 1;
-      this.refs.listView.setNativeProps({
-        contentSize: {height: 0}
-      });
+      this.refs.listView._sentEndForContentLength = 0;
       this.setState({isRefresh: true});
 
       fetch(this._getURL())
