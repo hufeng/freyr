@@ -15,6 +15,7 @@ var self = this;
 var {
   AppRegistry,
   StyleSheet,
+  StatusBarIOS,
   AsyncStorage,
   ActivityIndicatorIOS,
   Text,
@@ -32,6 +33,8 @@ var freyr = React.createClass({
   },
 
   componentDidMount() {
+    //set StatusBarIOS background
+    StatusBarIOS.setStyle('light-content');
     AsyncStorage.getItem('freyr_token', (err, token) => {
       if (err || !token) {
         if (__DEV__) {
